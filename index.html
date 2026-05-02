@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Samia ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  background: radial-gradient(circle at center, #140016, #000);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+/* Title */
+.title {
+  font-size: 2.7em;
+  margin-top: 20px;
+  color: #ff99cc;
+  text-shadow: 0 0 15px #ff4da6;
+  font-family: cursive;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+/* Heart */
+.heart {
+  font-size: 55px;
+  animation: pulse 1.2s infinite;
+}
+
+/* Box */
+.box {
+  margin: 20px;
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(255, 105, 180, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 0 25px rgba(255,105,180,0.3);
+  position: relative;
+  z-index: 5;
+}
+
+/* Text */
+p {
+  line-height: 1.7;
+  font-size: 1.1em;
+  min-height: 180px;
+}
+
+/* Video */
+.video-box video {
+  width: 90%;
+  max-width: 400px;
+  border-radius: 15px;
+  margin-top: 10px;
+  box-shadow: 0 0 20px rgba(255,105,180,0.4);
+  opacity: 0;
+  transition: 2s;
+}
+
+/* Bottom */
+.love {
+  font-size: 2.2em;
+  margin: 20px;
+  color: #ff80bf;
+  text-shadow: 0 0 10px #ff4da6;
+  font-family: cursive;
+  opacity: 0;
+  transition: 2s;
+}
+
+/* Floating hearts */
+.heart-float {
+  position: fixed;
+  bottom: -20px;
+  color: rgba(255, 77, 166, 0.25);
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(1.5px);
+  animation: floatUp linear infinite;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.15);}
+  100% {transform: scale(1);}
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0.5; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay" onclick="start()">Tap to start 💖</div>
+
+<div class="title">Welcome Samia 💖</div>
+<div class="heart">❤️</div>
+
+<div class="box">
+  <p id="typing"></p>
+</div>
+
+<div class="video-box">
+  <video id="vid" autoplay muted loop playsinline>
+    <source src="https://res.cloudinary.com/drig9vgsr/video/upload/your-video_t3nmyf.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="love" id="love">I Love You Samia ❤️</div>
+
+<audio id="music" loop>
+  <source src="https://res.cloudinary.com/drig9vgsr/video/upload/q_auto:low/your-music_l1leoh.mp3" type="audio/mp3">
+</audio>
+
+<script>
+const text = `একটা কথা বলি?
+
+তোমার সাথে কথা বলতে আমার ভালো লাগে।
+তোমার ওই একটু রাগী voice টা—honestly অনেক cute লাগছে। 😍
+
+আমি বুঝতে পারছি, ধীরে ধীরে তোমাকে আলাদা করে notice করছি 🫣
+
+আমি তোমাকে পছন্দ করি। ❤️
+তুমি কী ভাবো, জানালে ভালো লাগবে।`;
+
+let i = 0;
+
+function type(){
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type, 40);
+  } else {
+    document.getElementById("vid").style.opacity = "1";
+    document.getElementById("love").style.opacity = "1";
+  }
+}
+
+function start(){
+  document.querySelector(".overlay").style.display = "none";
+  document.getElementById("music").play();
+  type();
+}
+
+/* floating hearts */
+function createHeart(){
+  const h = document.createElement('div');
+  h.className = 'heart-float';
+  h.innerHTML = '❤️';
+
+  h.style.left = Math.random()*100 + 'vw';
+  h.style.fontSize = (Math.random()*20 + 15) + 'px';
+  h.style.animationDuration = (Math.random()*3 + 5) + 's';
+
+  document.body.appendChild(h);
+
+  setTimeout(()=>h.remove(),7000);
+}
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
